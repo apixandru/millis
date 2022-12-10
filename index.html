@@ -1,67 +1,14 @@
 <html>
 <head>
+    <title>millis</title>
     <style>
         body {
             margin: 0 0 0 0;
             padding: 0 0 0 0
         }
 
-        .emptyLine {
-            line-height: 36px;
-            min-height: 36px;
-            font-family: Arial;
-            font-size: 30;
-            line-height: 36px
-        }
-
-        .sep {
-            border-top: solid 1px #DDDDDD;
-            margin: 2px 0 2px 0
-        }
-
-        .dotSeparator {
-            color: #8d8d8d;
-            padding: 0 0.5px 0 0.5px
-        }
-
-        .leftColumn, .rightColumn {
-            width: 25%;
-            text-align: center
-        }
-
-        .centralColumn {
-            width: 50%
-        }
-
         sup {
             vertical-align: top
-        }
-
-        .bigTitle {
-            line-height: 68px;
-            min-height: 68px;
-            padding-left: 1.5px;
-            font-family: Arial;
-            text-shadow: 1px 0px 0px #525252;
-            font-size: 53.5px;
-            color: #525252;
-            background: rgba(249, 249, 249, 0.35);
-            border-radius: 25px;
-            text-decoration: none;
-            white-space: nowrap
-        }
-
-        .bigNumber {
-            border: 0 none;
-            text-align: left;
-            outline: 0 none;
-            font-size: 50px;
-            font-family: Arial;
-            color: #555555;
-            background: transparent;
-            text-shadow: -1px 0px 0px #555555;
-            outline-style: none;
-            border-style: none
         }
 
         .conversionInput {
@@ -152,479 +99,476 @@
             font-weight: bold
         }
 
-        .link {
-            color: #1ba3d5;
-            text-decoration: none;
-            white-space: nowrap;
-            cursor: pointer
+        .manualPane {
+            padding: 20px;
+            width: 240px;
         }
 
-        .link:hover {
-            text-decoration: underline
+        .manualPane .inputDiv {
+            margin-bottom: 10px;
         }
 
-        .link:focus {
-            outline: 0px none
-        }
-
-        .nonBoldLink {
-            color: #1788b2;
-            text-decoration: none;
-            white-space: nowrap;
-            cursor: pointer
-        }
-
-        .nonBoldLink:hover {
-            text-decoration: underline
-        }
-
-        .nonBoldLink:focus {
-            outline: 0px none
-        }
-
-        .line {
-            margin: 19px 0 19px 0
-        }
-
-        .headerRow {
-            text-align: center;
-            vertical-align: middle
-        }
-
-        .normal {
-            line-height: 20px;
-            font-size: 16;
-            font-family: Arial;
-            color: #222222
-        }
-
-        .code {
-            font-size: 14px;
-            font-family: monospace, Courier New;
-            letter-spacing: 0px;
-            color: #005500;
-            text-decoration: none
-        }
-
-        .codeComment {
-            font-size: 14px;
-            font-family: monospace, Courier New;
-            letter-spacing: 0px;
-            color: #888888
-        }
-
-        .sectionTitle {
-            line-height: 20px;
-            color: #494948;
-            outline: 0 none;
-            text-decoration: none
-        }
-
-        .sectionTitleSubdued {
-            line-height: 20px;
-            color: #000000
-        }
-
-        .anchor {
-            text-decoration: none;
-            outline: 0 none
-        }
-
-        .articleText {
-            text-align: justify;
-            line-height: 20px
-        }
-
-        .articleCode {
-            padding-left: 16px;
-            color: #AAAAAA
-        }
-
-        .articleImage {
+        .manualPane .inputDiv input, .manualPane .inputDiv textarea {
             width: 100%;
-            max-width: 100%
         }
 
-        .myGreen {
-            color: #669900
+        .manualPane .inputDiv textarea {
+            resize: vertical;
+            height: initial;
         }
 
-        .myGray {
-            color: #696969
+        .massFrom {
+            padding-right: 1px;
+            padding-left: 10px;
         }
 
-        .myPurple {
-            color: #9f60be
+        .massTo {
+            padding-left: 1px;
         }
 
-        .myGold {
-            color: #d18700
+        .manualPane .smallerPadding {
+            margin-bottom: 0;
         }
 
-        .myRed {
-            color: red
+        .massContainerLeft {
+            border-bottom: 2px solid #dbdbdb;
+            margin-top: 15px;
         }
 
-        .myDescription {
-            line-height: 16px;
-            min-height: 16px;
-            color: #696969;
-            font-size: 13.3px;
-            font-family: Arial;
-            text-decoration: none
+        .massFrom :nth-child(2), .massTo :nth-child(2) {
+            margin-top: 0;
         }
 
-        .myControl {
-            text-decoration: none
+        .dividerPane {
+            width: 2px;
+            height: auto;
+            margin: 10px;
+            background: #dbdbdb;
         }
 
-        .translucent {
-            background: rgba(253, 253, 253, 0.05)
-        }
-
-        .myButton, .myButton:focus {
-            background: #FEFEFE;
-            border: 1px solid #bbbbbb;
-            padding: 10px;
-            color: #696969;
-            font-family: Arial;
-            font-size: 13px;
-            cursor: default;
-            outline: 0 none;
-            text-decoration: none
-        }
-
-        .myButton:hover {
-            background: #FFFFFF;
-            color: #000000;
-            border: 1px solid #999999
-        }
-
-        .myButton:active {
-            background: #F9F9F9
-        }
-
-        .myFrame {
-            background: #FEFEFE;
-            border: 1px solid #bbbbbb;
-            color: #696969;
-            font-family: Arial;
-            font-size: 13px;
-            box-shadow: 4px 5px 6px #C0C0C0;
-            text-align: left
-        }
-
-        .invisibleSelection::-moz-selection {
-            background: none;
-            color: default
-        }
-
-        .invisibleSelection::selection {
-            background: none;
-            color: default
-        }
-
-        .card {
-            font-family: Arial Narrow;
-            border-radius: 6px;
-            background: #259FFF;
-            color: #FFFFFF;
-            padding: 15px 6px 15px 90px;
-            text-decoration: none;
-            background-image: url('images/golden_a_50.png');
-            background-repeat: no-repeat
-        }
-
+        .panels {
+            text-align: center;
+            width: fit-content;
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            border-left: 2px solid #dbdbdb;
+            border-right: 2px solid #dbdbdb;
+            height: 100%;
+            background: rgba(235, 235, 235, 0.5);
         }
     </style>
+
+    <script type="module">
+        leftMillis.focus();
+
+        const query = window.location.search;
+        const hasCustomTimezone = query.indexOf("timezone=") > 0;
+        const timezoneOffset = findTimezoneOffset(query, hasCustomTimezone);
+        const offsetHours = -timezoneOffset / 60;
+        const utcTimezoneDesignation = 'UTC' + (offsetHours >= 0 ? ("+" + offsetHours) : offsetHours) + "h";
+        const timezoneLabel = hasCustomTimezone ? utcTimezoneDesignation : findTimezoneLabel();
+
+        function extractTimezoneFromDate(date) {
+            var timezone = date.toString();
+            var startParanthesis = timezone.indexOf('(');
+            if (startParanthesis < 0) {
+                timezone = timezone.substring(timezone.lastIndexOf(' ') + 1);
+            } else {
+                timezone = timezone.substring(startParanthesis + 1, timezone.length - 1);
+            }
+            if (timezone.length > 4 && timezone.lastIndexOf(" Time") === timezone.length - 5) {
+                return timezone.substring(0, timezone.length - 5);
+            }
+            return timezone;
+        }
+
+        function findTimezoneLabel() {
+            var newDate = new Date();
+            var date = new Date(newDate.getTime() - (timezoneOffset - newDate.getTimezoneOffset()) * 60000);
+            return extractTimezoneFromDate(date);
+        }
+
+        function findTimezoneOffset(query, hasCustomTzOffset) {
+            var date = new Date();
+            var timezoneOffset = date.getTimezoneOffset();
+            if (hasCustomTzOffset) {
+                var index = query.indexOf("timezone=");
+                var end = query.indexOf("&", index + 1);
+                if (end < 0) {
+                    end = query.length;
+                }
+                var offset = query.substr(index + 9, end - index - 9);
+                var isNegative = false;
+                if (offset[0] === '-') {
+                    isNegative = true;
+                    offset = offset.substr(1, offset.length);
+                }
+                var tokens = offset.split(":");
+                var hours = parseInt(tokens[0]);
+                var minutes = tokens.length === 2 ? parseInt(tokens[1]) : 0;
+                timezoneOffset = -hours * 60 - minutes;
+                if (isNegative) {
+                    timezoneOffset = -timezoneOffset;
+                }
+            }
+            return timezoneOffset;
+        }
+
+        import {createApp} from 'https://unpkg.com/petite-vue?module'
+
+        createApp({
+            inputEpochMillisOne: null,
+            inputYear: null,
+            inputMonth: null,
+            inputDay: null,
+            inputHour: null,
+            inputMinute: null,
+            inputSecond: null,
+
+            inputEpochMillisMulti: null,
+            offsetYear: null,
+            offsetMonth: null,
+            offsetDay: null,
+            offsetHour: null,
+            offsetMinute: null,
+            offsetSecond: null,
+
+            timezoneLabel: utcTimezoneDesignation + " date time",
+            timezoneDescription: timezoneLabel,
+            customTimezone: hasCustomTimezone,
+
+            onMounted: function () {
+                const timestampNow = +(new Date().getTime() / 1000).toFixed(0) * 1000;
+                this.inputEpochMillisOne = timestampNow;
+                this.inputEpochMillisMulti = `${timestampNow}`;
+                this.inputEpochMillisOneChanged();
+            },
+
+            inputEpochMillisOneChanged() {
+                const date = this.dateAccountingForOffset(+this.inputEpochMillisOne);
+                this.inputYear = date.getFullYear();
+                this.inputMonth = date.getMonth() + 1;
+                this.inputDay = date.getDate();
+                this.inputHour = date.getHours();
+                this.inputMinute = date.getMinutes();
+                this.inputSecond = date.getSeconds();
+            },
+
+            asLocalReadableDate(epochMillis) {
+                if (!this.isNumeric(epochMillis)) {
+                    return "bad input";
+                }
+                const localDate = this.dateAccountingForOffset(epochMillis);
+                var local = localDate.toDateString() + ' ' + localDate.toTimeString();
+                var lastColonIndex = local.lastIndexOf(':');
+                return local.substring(0, lastColonIndex + 3)
+            },
+
+            asUtcReadableValue(epochMillis) {
+                if (!this.isNumeric(epochMillis)) {
+                    return "bad input";
+                }
+                const date = new Date(+epochMillis);
+                var utc = date.toUTCString();
+                var timezoneIndex = utc.lastIndexOf('GMT');
+                if (timezoneIndex < 0) {
+                    timezoneIndex = utc.lastIndexOf('UTC');
+                }
+                utc = utc.substring(0, timezoneIndex - 1);
+                var firstCommaIndex = utc.indexOf(',');
+                utc = utc.substring(0, firstCommaIndex) + utc.substring(firstCommaIndex + 1);
+                utc = utc.split(' ');
+                return utc[0] + ' ' + utc[2] + ' ' + utc[1] + ' ' + utc[3] + ' ' + utc[4];
+            },
+
+            epochTimestampFor(year, month, day, hours, minutes, seconds) {
+                var newDate = new Date(year, month, day, hours, minutes, seconds, 0);
+                var millis = newDate.getTime();
+                if (this.customTimezone) {
+                    millis += (timezoneOffset - newDate.getTimezoneOffset()) * 60000;
+                }
+                return millis;
+            },
+
+            dateAccountingForOffset(epochMillis) {
+                const date = new Date(+epochMillis);
+                if (this.customTimezone) {
+                    return new Date(epochMillis - (timezoneOffset - date.getTimezoneOffset()) * 60000)
+                }
+                return date;
+            },
+
+            offsetMillis(epochMillis) {
+                const date = this.dateAccountingForOffset(epochMillis);
+                const year = date.getFullYear() + +this.offsetYear;
+                const month = date.getMonth() + +this.offsetMonth;
+                const day = date.getDate() + +this.offsetDay;
+                const hours = date.getHours() + +this.offsetHour;
+                const minutes = date.getMinutes() + +this.offsetMinute;
+                const seconds = date.getSeconds() + +this.offsetSecond;
+
+                return this.epochTimestampFor(year, month, day, hours, minutes, seconds);
+            },
+
+            manualInputDate() {
+                return this.epochTimestampFor(this.inputYear, this.inputMonth - 1, this.inputDay, this.inputHour, this.inputMinute, this.inputSecond);
+            },
+
+            isNumeric(str) {
+                return !isNaN(str) && !isNaN(parseFloat(str));
+            }
+
+        }).mount()
+    </script>
 </head>
-<body style="margin:0;padding:0;text-align:center;background:rgba(235,235,235,0.5);overflow-x:hidden">
-<div style="position:fixed;height:2px;top:0;left:0;width:100%;border-top:1px solid #DDDDDD"></div>
-<table style="width:100%;text-align:center;vertical-align:middle" cellpadding="0" cellspacing="0">
-    <tbody>
-    <tr class="headerRow">
-        <td class="leftColumn">
-            <div style="width:90%">
-                <span class="emptyLine"><br></span>
-                <div class="measurementLabel">UTC date<br></div>
-                <a class="output" id="liveUTCDate" title="Current UTC date">14 Jun 2022</a>
+
+<body v-scope v-cloak @vue:mounted="onMounted">
+<div class="panels">
+    <div class="manualPane">
+        <div class="inputDiv">
+            <a class="output">Manual adjustment</a>
+        </div>
+        <div class="inputDiv">
+            <div class="inputLabel"
+                 onclick="leftMillis.select()">Input epoch millis
             </div>
-        </td>
-        <td class="rightColumn">
-            <div style="margin-left:10%;width:90%">
-                <span class="emptyLine"><br></span>
-                <div class="measurementLabel">local date<br></div>
-                <a class="output" id="localDate" title="Current local date">14 Jun 2022</a>
+            <input type="text"
+                   id="leftMillis"
+                   v-model="inputEpochMillisOne"
+                   class="conversionInput"
+                   @input="inputEpochMillisOneChanged()"
+            >
+        </div>
+        <div class="inputDiv smallerPadding">
+            <div class="outputLabel" onclick="leftUTCDate.select()">UTC date time</div>
+            <input type="text"
+                   id="leftUTCDate"
+                   v-model="asUtcReadableValue(inputEpochMillisOne)"
+                   class="conversionOutput"
+                   oncontextmenu="this.select()"
+                   readonly="readonly"
+            >
+        </div>
+        <div class="inputDiv">
+            <div class="outputLabel" onclick="leftDate.select()">{{timezoneLabel}}</div>
+            <input type="text"
+                   id="leftDate"
+                   v-model="asLocalReadableDate(inputEpochMillisOne)"
+                   class="conversionOutput"
+                   oncontextmenu="this.select()"
+                   readonly="readonly">
+        </div>
+        <div class="inputDiv" style="margin-top:40px;">
+            <a class="output" id="timezone" title="Local timezone">{{timezoneDescription}}</a>
+        </div>
+        <div class="inputDiv">
+            <div class="inputLabel" title="Put local date here">
+                Convert local YYYY / MM / DD
             </div>
-        </td>
-    </tr>
-    <tr class="headerRow">
-        <td class="leftColumn">
-            <div style="width:90%">
-                <span class="emptyLine"><br></span>
-                <div class="measurementLabel">UTC time<br></div>
-                <a class="output" id="utcTime" title="Current UTC time">22:31:22</a>
+            <input type="text"
+                   id="rightYear"
+                   class="conversionInput"
+                   style="float:left;width:33%"
+                   v-model="inputYear"
+                   maxlength="19"
+                   size="4">
+            <input type="text"
+                   id="rightMonth"
+                   class="conversionInput"
+                   style="width:33%"
+                   v-model="inputMonth"
+                   maxlength="2"
+                   size="4">
+            <input type="text"
+                   id="rightDay"
+                   class="conversionInput"
+                   style="float:right;width:33%;position:relative"
+                   v-model="inputDay"
+                   maxlength="2"
+                   size="4">
+        </div>
+        <div class="inputDiv">
+            <div class="inputLabel" title="Put local time here">and
+                HH : MM : SS
             </div>
-        </td>
-        <td class="rightColumn">
-            <div style="margin-left:10%;width:90%">
-                <span class="emptyLine"><br></span>
-                <div class="measurementLabel">local time<br></div>
-                <a class="output" id="liveTime" title="Current local time">15:31:22</a>
+            <input type="text"
+                   id="rightHour"
+                   class="conversionInput"
+                   style="float:left;width:33%"
+                   v-model="inputHour"
+                   maxlength="2"
+                   size="4">
+            <input type="text"
+                   id="rightMinute"
+                   class="conversionInput"
+                   style="width:33%"
+                   v-model="inputMinute"
+                   maxlength="2"
+                   size="4">
+            <input type="text"
+                   id="rightSecond"
+                   class="conversionInput"
+                   style="float:right;width:33%;position:relative"
+                   v-model="inputSecond"
+                   maxlength="2"
+                   size="4">
+        </div>
+        <div class="inputDiv smallerPadding">
+            <div class="outputLabel"
+                 onclick="rightMillis.select()">milliseconds since epoch
             </div>
-        </td>
-    </tr>
-    <tr class="headerRow">
-        <td class="leftColumn">
-            <div style="width:90%" title="Current time in milliseconds since January 1, 1970, 0:00 UTC">
-                <span class="emptyLine"><br></span>
-                <div class="measurementLabel">UNIX time<br></div>
-                <input type="text" class="output"
-                       style="max-width:100%;text-align:center;border:0;background:transparent;padding:0px 0px 0px 0px;outline:0;"
-                       id="liveMillis" onclick="updateLiveM=false;this.value=new Date().getTime();this.select()"
-                       oncontextmenu="updateLiveM=false;this.value=new Date().getTime();this.select()"
-                       onblur="updateLiveM=true">
+            <input type="text"
+                   id="rightMillis"
+                   class="conversionOutput"
+                   oncontextmenu="this.select()"
+                   v-model="manualInputDate()"
+                   readonly="readonly">
+        </div>
+        <div class="inputDiv smallerPadding">
+            <div class="outputLabel" onclick="outputUtcDate.select()">UTC date time
             </div>
-        </td>
-        <td class="rightColumn">
-            <div style="margin-left:10%;width:90%">
-                <span class="emptyLine"><br></span>
-                <div id="localTimezoneLabel" class="measurementLabel">local timezone (UTC-7h)<br></div>
-                <a class="output" id="timezone" title="Local timezone">Pacific Daylight</a>
+            <input type="text"
+                   id="outputUtcDate"
+                   class="conversionOutput"
+                   oncontextmenu="this.select()"
+                   v-model="asUtcReadableValue(manualInputDate())"
+                   readonly="readonly"
+            >
+        </div>
+        <div class="inputDiv">
+            <div class="outputLabel" onclick="outputLocalDateTime.select()">{{timezoneLabel}}</div>
+            <input type="text"
+                   id="outputLocalDateTime"
+                   class="conversionOutput"
+                   oncontextmenu="this.select()"
+                   v-model="asLocalReadableDate(manualInputDate())"
+                   readonly="readonly">
+        </div>
+    </div>
+    <div class="dividerPane"></div>
+    <div class="manualPane">
+        <div class="inputDiv">
+            <a class="output">Mass offsets</a>
+        </div>
+        <div class="inputDiv">
+            <div class="inputLabel" title="Put local date here">
+                Offset Year / Month / Day
             </div>
-        </td>
-    </tr>
-    <tr style="text-align:center;vertical-align:top">
-        <td class="leftColumn" style="text-align:center">
-            <div style="width:90%;padding-top:36px">
-                <div style="width:70%;margin-left:15%;min-width:162px;padding-bottom:20px">
-                    <div class="inputLabel" style="width:calc(100%-4px);min-width:158px"
-                         title="Paste milliseconds here &amp; get the date / time" onclick="leftMillis.select()">Convert
-                        milliseconds
-                    </div>
-                    <input type="text" id="leftMillis" class="conversionInput" oninput="convertToDate()"
-                           style="width:100%;min-width:160px">
-                </div>
-                <div style="width:70%;margin-left:15%;min-width:162px;padding-bottom:20px">
-                    <div class="outputLabel" style="width:calc(100%-4px);min-width:158px"
-                         onclick="leftUTCDate.select()">to UTC time &amp; date:
-                    </div>
-                    <input type="text" id="leftUTCDate" class="conversionOutput" oncontextmenu="this.select()"
-                           readonly="readonly" style="width:100%;min-width:160px">
-                </div>
-                <div style="width:70%;margin-left:15%;min-width:162px;padding-bottom:20px">
-                    <div class="outputLabel" style="width:calc(100%-4px);min-width:158px" onclick="leftDate.select()">to
-                        local time &amp; date:
-                    </div>
-                    <input type="text" id="leftDate" class="conversionOutput" oncontextmenu="this.select()"
-                           readonly="readonly" style="width:100%;min-width:160px">
-                </div>
-                <div style="width:60%;min-width:160px;margin-left:20%;padding-top:4.5px">
-                </div>
-
+            <input type="text"
+                   class="conversionInput"
+                   style="float:left;width:33%"
+                   v-model="offsetYear"
+                   maxlength="19"
+                   size="4">
+            <input type="text"
+                   class="conversionInput"
+                   style="width:33%"
+                   v-model="offsetMonth"
+                   maxlength="2"
+                   size="4">
+            <input type="text"
+                   class="conversionInput"
+                   style="float:right;width:33%;position:relative"
+                   v-model="offsetDay"
+                   maxlength="2"
+                   size="4">
+        </div>
+        <div class="inputDiv">
+            <div class="inputLabel" title="Put local time here">
+                Offset Hour / Minute / Second
             </div>
-        </td>
-        <td class="rightColumn">
-            <div style="margin-left:10%;width:90%;text-align:center;padding-top:36px;">
-                <div style="width:70%;margin-left:15%;min-width:204px;padding-bottom:20px">
-                    <div class="inputLabel" style="width:calc(100%-4px);min-width:200px" title="Put local date here">
-                        Convert local YYYY / MM / DD
-                    </div>
-                    <input type="text" id="rightYear" class="conversionInput" style="float:left;width:33%"
-                           oninput="convertToMillis()" maxlength="19" size="4">
-                    <input type="text" id="rightMonth" class="conversionInput" style="width:33%"
-                           oninput="convertToMillis()" maxlength="2" size="4">
-                    <input type="text" id="rightDay" class="conversionInput"
-                           style="float:right;width:33%;position:relative" oninput="convertToMillis()" maxlength="2"
-                           size="4">
+            <input type="text"
+                   class="conversionInput"
+                   style="float:left;width:33%"
+                   v-model="offsetHour"
+                   maxlength="2"
+                   size="4">
+            <input type="text"
+                   class="conversionInput"
+                   style="width:33%"
+                   v-model="offsetMinute"
+                   maxlength="2"
+                   size="4">
+            <input type="text"
+                   class="conversionInput"
+                   style="float:right;width:33%;position:relative"
+                   v-model="offsetSecond"
+                   maxlength="2"
+                   size="4">
+        </div>
+        <div class="inputDiv">
+            <div class="inputLabel"
+                 onclick="offsetMillis.select()">Input multiple epoch millis
+            </div>
+            <textarea rows="16"
+                      v-model="inputEpochMillisMulti"
+                      class="conversionInput"
+            ></textarea>
+        </div>
+    </div>
+    <div class="manualPane massFrom">
+        <div class="inputDiv">
+            <a class="output">From</a>
+        </div>
+        <div v-for="epochMillis of inputEpochMillisMulti?.split('\n')" class="massContainerLeft">
+            <div v-if="epochMillis">
+                <div class="inputDiv smallerPadding">
+                    <div class="outputLabel">milliseconds since epoch</div>
+                    <input type="text"
+                           class="conversionOutput"
+                           v-model="epochMillis"
+                           readonly="readonly">
                 </div>
-                <div style="width:70%;margin-left:15%;min-width:204px;padding-bottom:20px">
-                    <div class="inputLabel" style="width:calc(100%-4px);min-width:200px" title="Put local time here">and
-                        HH : MM : SS
-                    </div>
-                    <input type="text" id="rightHour" class="conversionInput" style="float:left;width:33%"
-                           oninput="convertToMillis()" maxlength="2" size="4">
-                    <input type="text" id="rightMinute" class="conversionInput" style="width:33%"
-                           oninput="convertToMillis()" maxlength="2" size="4">
-                    <input type="text" id="rightSecond" class="conversionInput"
-                           style="float:right;width:33%;position:relative" oninput="convertToMillis()" maxlength="2"
-                           size="4">
+                <div class="inputDiv smallerPadding">
+                    <div class="outputLabel">UTC date time</div>
+                    <input type="text"
+                           class="conversionOutput"
+                           v-model="asUtcReadableValue(epochMillis)"
+                           readonly="readonly"
+                    >
                 </div>
-                <div style="width:70%;margin-left:15%;min-width:204px;padding-bottom:20px">
-                    <div class="outputLabel" style="width:calc(100%-4px);min-width:200px"
-                         onclick="rightMillis.select()">to milliseconds since epoch:
-                    </div>
-                    <input type="text" id="rightMillis" class="conversionOutput" oncontextmenu="this.select()"
-                           readonly="readonly" style="width:100%">
-                </div>
-                <div style="width:60%;margin-left:20%;padding-top:4.5px">
+                <div class="inputDiv">
+                    <div class="outputLabel">{{timezoneLabel}}</div>
+                    <input type="text"
+                           class="conversionOutput"
+                           v-model="asLocalReadableDate(epochMillis)"
+                           readonly="readonly">
                 </div>
             </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<script type="text/javascript">
-
-    var date = new Date();
-    var query = window.location.search;
-    var timezoneOffset = date.getTimezoneOffset();
-    var HAS_CUSTOM_TIMEZONE_OFFSET = query.indexOf("timezone=") > 0;
-    if (HAS_CUSTOM_TIMEZONE_OFFSET) {
-        var index = query.indexOf("timezone=");
-        var end = query.indexOf("&", index + 1);
-        if (end < 0) end = query.length;
-        var offset = query.substr(index + 9, end - index - 9);
-        var isNegative = false;
-        if (offset[0] == '-') {
-            isNegative = true;
-            offset = offset.substr(1, offset.length);
-        }
-        var tokens = offset.split(":");
-        var hours = parseInt(tokens[0]);
-        var minutes = parseInt(tokens[1]);
-        timezoneOffset = -hours * 60 - minutes;
-        if (isNegative) {
-            timezoneOffset = -timezoneOffset;
-        }
-    }
-
-    var offsetMillis = -timezoneOffset * 60000;
-
-    function convertToDate() {
-        var x = document.getElementById('leftMillis').value.replace(/,/g, "");
-        if (x.charAt(x.length - 1) == "L") {
-            x = x.slice(0, -1)
-        }
-        var checkedOffset = Number(x);
-        var date = new Date(checkedOffset);
-        var localDate = date;
-        if (HAS_CUSTOM_TIMEZONE_OFFSET) {
-            localDate = new Date(checkedOffset - (timezoneOffset - date.getTimezoneOffset()) * 60000)
-        }
-        var local = localDate.toDateString() + ' ' + localDate.toTimeString();
-        var lastColonIndex = local.lastIndexOf(':');
-        local = local.substring(0, lastColonIndex + 3)
-        document.getElementById('leftDate').value = local;
-        var utc = date.toUTCString();
-        var timezoneIndex = utc.lastIndexOf('GMT');
-        if (timezoneIndex < 0) {
-            timezoneIndex = utc.lastIndexOf('UTC');
-        }
-        utc = utc.substring(0, timezoneIndex - 1);
-        var firstCommaIndex = utc.indexOf(',');
-        utc = utc.substring(0, firstCommaIndex) + utc.substring(firstCommaIndex + 1);
-        utc = utc.split(' ');
-        document.getElementById('leftUTCDate').value = utc[0] + ' ' + utc[2] + ' ' + utc[1] + ' ' + utc[3] + ' ' + utc[4];
-        document.getElementById('rightYear').value = date.getFullYear();
-        document.getElementById('rightMonth').value = date.getMonth() + 1;
-        document.getElementById('rightDay').value = date.getDate();
-        document.getElementById('rightHour').value = date.getHours();
-        document.getElementById('rightMinute').value = date.getMinutes();
-        document.getElementById('rightSecond').value = date.getSeconds();
-        convertToMillis();
-    }
-
-    function extractNumber(elementId) {
-        return +document.getElementById(elementId).value;
-    }
-
-    function convertToMillis() {
-        var year = extractNumber('rightYear');
-        var month = extractNumber('rightMonth') - 1;
-        var day = extractNumber('rightDay');
-        var hours = extractNumber('rightHour');
-        var minutes = extractNumber('rightMinute');
-        var seconds = extractNumber('rightSecond');
-        var d = new Date(year, month, day, hours, minutes, seconds, 0);
-        var millis = d.getTime();
-        if (HAS_CUSTOM_TIMEZONE_OFFSET) millis += (timezoneOffset - d.getTimezoneOffset()) * 60000;
-        document.getElementById('rightMillis').value = millis;
-    }
-
-    leftMillis.focus();
-    var updateLiveM = true;
-    var liveM = document.getElementById("liveMillis");
-    var timeM = document.getElementById("liveTime");
-    var timezoneM = document.getElementById("timezone");
-    var liveUTCDate = document.getElementById("liveUTCDate");
-    var localDate = document.getElementById("localDate");
-    var offsetHours = -timezoneOffset / 60;
-    var utcT = document.getElementById("utcTime");
-    var localTimezoneL = document.getElementById("localTimezoneLabel");
-    var count = 500;
-    update();
-    var delay = 332;
-    if (window.location.search.indexOf("advanced") > 0) {
-        delay = 47;
-    }
-    setInterval(function () {
-        update()
-    }, delay);
-
-    function fillDigit(value, withDigit) {
-        if (value < 10) return (withDigit ? "0" : " ") + value;
-        return value;
-    }
-
-    function update() {
-        var newDate = new Date();
-        var date = new Date(newDate.getTime() - (timezoneOffset - newDate.getTimezoneOffset()) * 60000);
-        var millis = newDate.getTime();
-        if (updateLiveM) liveM.value = millis;
-        timeM.innerHTML = fillDigit(date.getHours(), false) + ":" + fillDigit(date.getMinutes(), true) + ":" + fillDigit(date.getSeconds(), true);
-        utcT.innerHTML = fillDigit(newDate.getUTCHours(), false) + ":" + fillDigit(newDate.getUTCMinutes(), true) + ":" + fillDigit(newDate.getUTCSeconds(), true);
-        if (delay > 50 && count < 300) {
-            count++;
-            return;
-        }
-        count = 0;
-        var s = date.toString();
-        var iOfP = s.indexOf('(');
-        if (iOfP < 0) {
-            s = s.substring(s.lastIndexOf(' ') + 1);
-        } else {
-            s = s.substring(iOfP + 1, s.length - 1);
-        }
-        if (s.length > 4 && s.lastIndexOf(" Time") == s.length - 5) {
-            s = s.substring(0, s.length - 5);
-        }
-        var utcTimezoneDesignation = 'UTC' + (offsetHours >= 0 ? ("+" + offsetHours) : offsetHours) + "h";
-        localTimezoneL.innerHTML = 'local timezone (' + utcTimezoneDesignation + ")<br/>";
-        timezoneM.innerHTML = HAS_CUSTOM_TIMEZONE_OFFSET ? utcTimezoneDesignation : s;
-        s = date.toUTCString();
-        s = s.substring(s.indexOf(' ') + 1);
-        liveUTCDate.innerHTML = s.substring(0, s.indexOf(' ', s.indexOf(' ', s.indexOf(' ') + 1) + 1));
-        s = date.toString();
-        s = s.substring(s.indexOf(' ') + 1);
-        s = s.substring(0, s.indexOf(' ', s.indexOf(' ', s.indexOf(' ') + 1) + 1));
-        var localDateTokens = s.split(' ');
-        localDate.innerHTML = localDateTokens[1] + ' ' + localDateTokens[0] + ' ' + localDateTokens[2];
-        offsetHours = Math.floor(offsetHours);
-        var lDate = new Date(date.getTime() - (timezoneOffset - date.getTimezoneOffset()) * 60000);
-        if (window.location.search.indexOf("prefill") > 0) {
-            prefillLeftColumn(millis);
-            prefillRightColumn(millis, date);
-        }
-    }
-
-    function prefillLeftColumn(millis) {
-        leftMillis.value = millis;
-        convertToDate()
-    }
-
-    function prefillRightColumn(millis, date) {
-        rightYear.value = date.getFullYear();
-        rightMonth.value = fillDigit(date.getMonth() + 1, true);
-        rightDay.value = fillDigit(date.getDate(), true);
-        rightHour.value = fillDigit(date.getHours(), true);
-        rightMinute.value = fillDigit(date.getMinutes(), true);
-        rightSecond.value = fillDigit(date.getSeconds(), true);
-        convertToMillis();
-    }
-
-</script>
-
-
+        </div>
+    </div>
+    <div class="manualPane massTo">
+        <div class="inputDiv">
+            <a class="output">To</a>
+        </div>
+        <div v-for="epochMillis of inputEpochMillisMulti?.split('\n')" class="massContainerLeft">
+            <div v-if="epochMillis">
+                <div class="inputDiv smallerPadding">
+                    <div class="outputLabel">milliseconds since epoch</div>
+                    <input type="text"
+                           class="conversionOutput"
+                           v-model="offsetMillis(epochMillis)"
+                           readonly="readonly">
+                </div>
+                <div class="inputDiv smallerPadding">
+                    <div class="outputLabel">UTC date time</div>
+                    <input type="text"
+                           class="conversionOutput"
+                           v-model="asUtcReadableValue(offsetMillis(epochMillis))"
+                           readonly="readonly"
+                    >
+                </div>
+                <div class="inputDiv">
+                    <div class="outputLabel">{{timezoneLabel}}</div>
+                    <input type="text"
+                           class="conversionOutput"
+                           v-model="asLocalReadableDate(offsetMillis(epochMillis))"
+                           readonly="readonly">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
