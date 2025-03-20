@@ -1,3 +1,4 @@
+
 <html>
 <head>
     <title>millis</title>
@@ -215,10 +216,13 @@
             return timezoneOffset;
         }
 
-        import {createApp} from 'https://unpkg.com/petite-vue?module'
+        import { createApp } from 'https://unpkg.com/petite-vue@0.3.0/dist/petite-vue.es.js'
 
-        createApp({
-            inputEpochMillisOne: null,
+        // Get current timestamp for initialization
+        const initialTimestamp = +(new Date().getTime() / 1000).toFixed(0) * 1000;
+
+        const app = createApp({
+            inputEpochMillisOne: initialTimestamp,
             inputYear: null,
             inputMonth: null,
             inputDay: null,
@@ -226,7 +230,7 @@
             inputMinute: null,
             inputSecond: null,
 
-            inputEpochMillisMulti: null,
+            inputEpochMillisMulti: `${initialTimestamp}`,
             offsetYear: null,
             offsetMonth: null,
             offsetDay: null,
@@ -238,10 +242,7 @@
             timezoneDescription: timezoneLabel,
             customTimezone: hasCustomTimezone,
 
-            onMounted: function () {
-                const timestampNow = +(new Date().getTime() / 1000).toFixed(0) * 1000;
-                this.inputEpochMillisOne = timestampNow;
-                this.inputEpochMillisMulti = `${timestampNow}`;
+            onMounted() {
                 this.inputEpochMillisOneChanged();
             },
 
@@ -320,10 +321,23 @@
             }
 
         }).mount()
+
+        // Make sure time values are initialized
+        window.onload = function() {
+            // Set initial values in the input field
+            document.getElementById('leftMillis').value = initialTimestamp;
+            
+            // Manually trigger Vue to update by creating and dispatching an input event
+            const inputEvent = new Event('input', { bubbles: true });
+            document.getElementById('leftMillis').dispatchEvent(inputEvent);
+            
+            // Focus the input field
+            document.getElementById('leftMillis').focus();
+        };
     </script>
 </head>
 
-<body v-scope v-cloak @vue:mounted="onMounted">
+<body v-scope v-cloak>
 <div class="panels">
     <div class="manualPane">
         <div class="inputDiv">
